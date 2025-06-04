@@ -31,5 +31,5 @@ object Modulo extends CompNodeFactory:
 
     this(lhs, rhs)
 
-private final class ModuloOperator extends BinaryOperator[Boolean, Any, Any]:
-  override protected def operation(x: Any, y: Any): Boolean = x % y
+private final class ModuloOperator extends BinaryOperator[Int, Any, Any]:
+  override protected def operation(x: Any, y: Any): Int = x % y
