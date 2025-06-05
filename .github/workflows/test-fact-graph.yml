@@ -1,4 +1,4 @@
-name: Scala Backend Test Suite
+name: Run Scala Fact-Graph test suite
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: backend
+        working-directory: direct-file/fact-graph-scala
 
     steps:
       - name: Checkout repository
@@ -39,6 +39,7 @@ jobs:
           key: sbt-cache-${{ runner.os }}-${{ hashFiles('backend/**.sbt') }}
           restore-keys: |
             sbt-cache-${{ runner.os }}
-
+    
+      - uses: sbt/setup-sbt@v1
       - name: Run Scala tests
         run: sbt test
