@@ -90,24 +90,45 @@
           </Case>
           <Case>
             <When>
-              <Equal>
+          <Case>
+            <When>
+              <NotEqual>
                 <Left>
                   <Modulo>
                     <Left>
                       <Dependency path="/taxYear" />
                     </Left>
                     <Right>
-                      <Int>4</Int>
+                      <Int>100</Int>
                     </Right>
                   </Modulo>
                 </Left>
                 <Right>
                   <Int>0</Int>
                 </Right>
-              </Equal>
+              </NotEqual>
             </When>
             <Then>
-              <True />
+              <When>
+                <Equal>
+                  <Left>
+                    <Modulo>
+                      <Left>
+                        <Dependency path="/taxYear" />
+                      </Left>
+                      <Right>
+                        <Int>4</Int>
+                      </Right>
+                    </Modulo>
+                  </Left>
+                  <Right>
+                    <Int>0</Int>
+                  </Right>
+                </Equal>
+              </When>
+              <Then>
+                <True />
+              </When>
             </Then>
           </Case>
           <Case>
