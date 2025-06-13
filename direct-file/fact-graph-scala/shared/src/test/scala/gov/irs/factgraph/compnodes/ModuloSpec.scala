@@ -17,7 +17,7 @@ class ModuloSpec extends AnyFunSpec:
           "Modulo",
           Seq(
             new CompNodeConfigElement(
-              "Dividend",
+              "Left",
               Seq(
                 new CompNodeConfigElement(
                   "Int",
@@ -27,7 +27,7 @@ class ModuloSpec extends AnyFunSpec:
               )
             ),
             new CompNodeConfigElement(
-              "Modulus",
+              "Right",
               Seq(
                 new CompNodeConfigElement(
                   "Int",
@@ -40,6 +40,6 @@ class ModuloSpec extends AnyFunSpec:
         )
       )
 
-      assert(node.get(0) == Result.Complete(Int("2")))
+      assert(node.get(0) == Result.Complete(2))
     }
   }

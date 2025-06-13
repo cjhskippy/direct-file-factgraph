@@ -9,19 +9,19 @@ object Modulo extends CompNodeFactory:
 
   private val operator = ModuloOperator()
 
-  def apply(lhs: CompNode, rhs: CompNode): BooleanNode =
-    if (lhs.getClass != rhs.getClass)
+  def apply(lhs: CompNode, rhs: CompNode): IntNode = (lhs, rhs) match
+    case (l: IntNode, r: IntNode) =>
+      IntNode(
+        Expression.Binary(
+          l.expr,
+          r.expr,
+          operator,
+        ),
+      )
+    case _ =>
       throw new UnsupportedOperationException(
         s"cannot modulate a ${lhs.getClass.getName} and a ${rhs.getClass.getName}",
       )
-
-    BooleanNode(
-      Expression.Binary(
-        lhs.expr,
-        rhs.expr,
-        operator,
-      ),
-    )
 
   override def fromDerivedConfig(e: CompNodeConfigTrait)(using Factual)(using
       FactDictionary,
@@ -31,5 +31,5 @@ object Modulo extends CompNodeFactory:
 
     this(lhs, rhs)
 
-private final class ModuloOperator extends BinaryOperator[Int, Any, Any]:
-  override protected def operation(x: Any, y: Any): Int = x % y
+private final class ModuloOperator extends BinaryOperator[Int, Int, Int]:
+  override protected def operation(x: Int, y: Int): Int = x % y

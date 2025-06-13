@@ -85,11 +85,9 @@
               </When>
               <Then>
                 <True />
-              </When>
+              </Then>
             </Then>
           </Case>
-          <Case>
-            <When>
           <Case>
             <When>
               <NotEqual>
@@ -128,7 +126,7 @@
               </When>
               <Then>
                 <True />
-              </When>
+              </Then>
             </Then>
           </Case>
           <Case>
