@@ -56,7 +56,7 @@
                       <Dependency path="/taxYear" />
                     </Left>
                     <Right>
-                      <Int>100</Int>
+                      <Int>400</Int>
                     </Right>
                   </Modulo>
                 </Left>
@@ -66,31 +66,12 @@
               </Equal>
             </When>
             <Then>
-              <When>
-                <Equal>
-                  <Left>
-                    <Modulo>
-                      <Left>
-                        <Dependency path="/taxYear" />
-                      </Left>
-                      <Right>
-                        <Int>400</Int>
-                      </Right>
-                    </Modulo>
-                  </Left>
-                  <Right>
-                    <Int>0</Int>
-                  </Right>
-                </Equal>
-              </When>
-              <Then>
                 <True />
-              </Then>
             </Then>
           </Case>
           <Case>
             <When>
-              <NotEqual>
+              <Equal>
                 <Left>
                   <Modulo>
                     <Left>
@@ -104,29 +85,32 @@
                 <Right>
                   <Int>0</Int>
                 </Right>
-              </NotEqual>
+              </Equal>
             </When>
             <Then>
-              <When>
-                <Equal>
-                  <Left>
-                    <Modulo>
-                      <Left>
-                        <Dependency path="/taxYear" />
-                      </Left>
-                      <Right>
-                        <Int>4</Int>
-                      </Right>
-                    </Modulo>
-                  </Left>
-                  <Right>
-                    <Int>0</Int>
-                  </Right>
-                </Equal>
-              </When>
-              <Then>
+                <False />
+            </Then>
+          </Case>
+          <Case>
+            <When>
+              <Equal>
+                <Left>
+                  <Modulo>
+                    <Left>
+                      <Dependency path="/taxYear" />
+                    </Left>
+                    <Right>
+                      <Int>4</Int>
+                    </Right>
+                  </Modulo>
+                </Left>
+                <Right>
+                  <Int>0</Int>
+                </Right>
+              </Equal>
+            </When>
+            <Then>
                 <True />
-              </Then>
             </Then>
           </Case>
           <Case>
