@@ -22,6 +22,54 @@ __Table of Contents__
     * [Code Coverage](#code-coverage)
 
 # Quickstart
+
+In a moment, you'll get the generic instructions to build all of the open-sourced parts of the Direct File project.
+
+But since you're looking at this repo, maybe you want to know more about the fact graph.
+
+The guide on [Devving the fact dictionary is good reading](/direct-file/tree/main/direct-file/df-client#devving-the-fact-dictionary).
+
+## How to confirm your code is ready to merge
+
+This branch doesn't have CI enabled, at least not yet. Sure would be nice. In the meantime, here's how to check
+your work:
+
+### Did you change the scala code?
+
+For a working example of scala changes, see https://github.com/IRS-Public/direct-file/pull/1 by @elijah-wright
+
+If you didn't make any changes, skip ahead. If you changed scala code:
+
+1. Add tests in `/direct-file/direct-file/fact-graph-scala/shared/src/test/...` as appropriate
+   
+2. In `/direct-file/direct-file/fact-graph-scala` ... 
+   1. Does `sbt test` pass?
+   2. You have run `sbt scalafmt` `sbt compile` `sbt clean` `sbt fastOptJS` successfully
+
+3. In `/direct-file/df-client/df-client-app`
+   1. You have run `npm run copy-transpiled-js`
+   2. You have run `run docker-compose build`
+
+### Did you change the fact dictionary?
+
+You probably did, that's the whole point of this repo. But if you're doing some other maintenance or cleanup and
+didn't touch the fact graph at all, feel free to skip this stuff:
+
+1. In `/direct-file/direct-file/df-client/df-client-app` can you run `npm run generate-fact-dictionary` successfully?
+2. After having run the generate-fact-dictionary step, do the fact dictionary tests pass? (from `/direct-file/direct-file/df-client/df-client-app/src/test` run `npm run test factDictionaryTests`)
+
+### Did you modify the supported tax scope?
+
+Awesome! There's no community standard for this yet, but there probably should be. Let's figure out the right
+steps to verify correctness together.
+
+### If you made any changes beyond documentation:
+1. Run the client and manually verify that your changes work as expected. The Flamingo Fact Checker is an all-star
+  here. `debugFactGraph.get()` and `debugFactGraphScala` are likely to be your friends too.
+
+
+## And now that quickstart you were expecting
+
 To run everything:
 
 ```bash
