@@ -1,33 +1,41 @@
-# Direct File
-[Direct File](https://directfile.irs.gov) is a service from the United States Government that provides taxpayers the option to electronically file their federal tax return for free, directly with the Internal Revenue Service (IRS). Direct File is an interview-based service that is intended to work as well on a mobile phone as it does on a laptop, tablet, or desktop computer. It is available in English and Spanish and is designed to be accessible to taxpayers who have a variety of attitudes, aptitudes, abilities, and access needs.
+# Maintaining Direct File's Fact Graph
 
-Direct File interprets the United States' [Internal Revenue Code (26 USC)](https://www.irs.gov/privacy-disclosure/tax-code-regulations-and-official-guidance) as plain language questions, the answers to which should be known to taxpayers without need of external instructions or publications. Taxpayers' answers are then translated into standard tax forms and transmitted to the IRS's [Modernized e-File (MeF)](https://www.irs.gov/e-file-providers/modernized-e-file-program-information) API, which is available for authorized public use. These questions and logic, developed in close collaboration with the IRS [Office of Chief Counsel](https://www.irs.gov/about-irs/office-of-chief-counsel-at-a-glance), as well as the associated test cases and scenarios, may be useful for others working on products that need to accurately interpret United States tax law as of Tax Year 2024.
+This branch preserves an open-source computer-readable representation of the tax code.
+
+## Goals
+
+For now, as an all-volunteer effort, the goal is simply to keep the tax scope covered by 
+[Direct File](https://directfile.irs.gov) accurate through the 2025 tax year. Perhaps we do more, and that'd be great. But the tax code and forms change around every year, and step 1 is just to keep up with all that churn.
+
+If that goal doesn't sound ambitious enough for you, think about what this could make possible:
+
+- Tools that allow anyone to check to see if their own tax provider gave them all of the credits they were entitled to and file for any credits that were missed. Or to help the millions of people who don't file taxes easily discover that they have a tax refund waiting for them.
+- States develop their own tax filing tools that support both state + local taxes
+- When the Federal government gets their act together, Direct File can be rebuilt faster, cover more people, and let most Americans file their taxes for free.
+
+## Where this might go (if there's a lot of volunteer interest)
+
+Anything that improves the representation of the tax code through the fact graph is fair game:
+
+- Making it easier to develop the fact graph
+  - Simplifying the code base
+  - Adding CI + testing
+- Adding any tax scope above + beyond what was covered by Direct File, **so long as it's verifiably accurate** 
+- Maintaining any tools that help verify the correctness of the fact graph (potentially including the frontend, PDF generation, and the Flamingo Fact Checker)
+
+## What we're not doing
+
+- Anything that takes more time and energy than a zero-budget volunteer effort can support
+- Attempting to maintain Direct File as a whole, or building any of the spin-off tools mentioned above. Those are all great ideas, but this is not the place to work on them. The hope is that some of those more-ambitious projects will spin up, and all of them can use this shared, public representation of the tax code.
+
+## Can I help?
+
+**Heck yeah!** Volunteers are welcome. Be kind and patient and we'll get along just fine. Check out [ONBOARDING.md](/ONBOARDING.md) if you want to help out.
+
+## Background and Acknowledgements
+
+This code stands on the shoulders of giants, born from the open-sourced [Direct File](https://github.com/IRS-Public/direct-file). Those giants included team members from the [IRS](https://www.irs.gov/), [USDS](https://www.usds.gov) and [GSA](https://www.gsa.gov/), as well as vendor teams [TrussWorks](https://truss.works), [Coforma](https://coforma.io), and [ATI](https://atisolutions.us/).
 
 Direct File also incorporates the Fact Graph, a declarative, XML-based knowledge graph data structure that is designed to reason about incomplete information, such as a partially completed tax return. The Fact Graph is written in the Scala programming language; it runs on the JVM on the backend and is transpiled via [Scala.js](https://www.scala-js.org) to run on the client as well. Direct File's Fact Graph is not domain-specific, and it may be useful to revenue agencies and as a reference for business rules engine implementations.
 
-Although Direct File only files federal tax returns, United States taxpayers also have state and local filing obligations. Direct File facilitates the completion of these obligations by enabling taxpayers to optionally import their federal return data into a third-party tool that can file state and/or local taxes, without needing to reenter information. This transaction is enabled via a State API, which transfers both standard MeF XML as well as an enriched JSON format that includes additional data elements that were identified as being useful to state revenue agencies to streamline the state tax experience.
-
-Direct File was developed by an in-house team of technologists at the IRS. The blended, cross-agency team included support from [USDS](https://www.usds.gov) and [GSA](https://www.gsa.gov/), as well as vendor teams [TrussWorks](https://truss.works), [Coforma](https://coforma.io), and [ATI](https://atisolutions.us/).
-
 For a more details on the program and its history see https://www.irs.gov/pub/irs-pdf/p5969.pdf and https://www.irs.gov/filing/irs-direct-file-for-free
-
-## Where do I start?
-See [ONBOARDING.md](/ONBOARDING.md) if you want to jump into running Direct File locally
-
-## Exempted Code
-Not all source code, documentation and metadata used in the development of Direct File is included in this repository. Specifically, any code or data that is considered Personally Identifiable Information (PII), Federal Tax Information (FTI),
-Sensitive But Unclassified (SBU), or source code developed for National Security Systems (NSS), as defined in 40 U.S.C. § 11103, is exempt. Due to these restrictions, certain pieces of functionality have been removed or rewritten.
-
-# Authorities
-Legal foundations for work include:
-* Source code Harmonization And Reuse in Information Technology Act" of 2024, Public Law 118 - 187
-* OMB Memorandum M-16-21, “Federal Source Code Policy: Achieving Efficiency,
-Transparency, and Innovation through Reusable and Open Source Software,” August 8,
-2016
-* Federal Acquisition Regulation (FAR) Part 27 – Patents, Data, and Copyrights
-* Digital Government Strategy: “Digital Government: Building a 21st Century Platform to
-Better Serve the American People,” May 23, 2012
-* Federal Information Technology Acquisition Reform Act (FITARA), December 2014
-(National Defense Authorization Act for Fiscal Year 2015, Title VIII, Subtitle D)
-* E-Government Act of 2002, Public Law 107-347
-* Clinger-Cohen Act of 1996, Public Law 104-106
