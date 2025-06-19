@@ -48,7 +48,7 @@ If you didn't make any changes, skip ahead. If you changed scala code:
 
 3. In `/direct-file/df-client/df-client-app`
    1. You have run `npm run copy-transpiled-js`
-   2. You have run `run docker-compose build`
+   2. You have run `docker-compose build`
 
 ### Did you change the fact dictionary?
 
