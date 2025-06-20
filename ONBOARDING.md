@@ -313,21 +313,8 @@ Most of the project dependencies can be installed using [SDKMAN!](https://sdkman
     export LOCAL_WRAPPING_KEY="9mteZFY+gIVfMFywgvpLpyVl+8UIcNoIWpGaHX4jDFU="
     export MEF_SOFTWARE_ID="[mef-software-id]"
     export MEF_SOFTWARE_VERSION_NUM="2023.0.1"
-    export STATUS_ASID="[status-asid]"
-    export STATUS_EFIN="[status-efin]"
-    export STATUS_ETIN="[status-etin]"
-    export SUBMIT_ASID=$STATUS_ASID
-    export SUBMIT_EFIN=$STATUS_EFIN
-    export SUBMIT_ETIN=$STATUS_ETIN
     export DF_TIN_VALIDATION_ENABLED=false
     export DF_EMAIL_VALIDATION_ENABLED=false
-    export STATUS_KEYSTOREALIAS="[keystore-alias]"
-    export STATUS_KEYSTOREBASE64="[base64-encoded-keystore]"
-    export STATUS_KEYSTOREPASSWORD="[keystore-password]"
-    export SUBMIT_KEYSTORE_KEYSTOREALIAS=$STATUS_KEYSTOREALIAS
-    export SUBMIT_KEYSTORE_KEYSTOREBASE64=$STATUS_KEYSTOREBASE64
-    export SUBMIT_KEYSTORE_KEYSTOREPASSWORD=$STATUS_KEYSTOREPASSWORD
-    export SUBMIT_ID_VAR_CHARS="zz"
     export GIT_COMMIT_HASH="$(cd /path/to/direct-file && git rev-parse --short main)"
     ```
 
