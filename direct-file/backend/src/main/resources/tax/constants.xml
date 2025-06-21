@@ -198,7 +198,7 @@
 
     <Fact path="/majorityOfDaysInYear">
       <Name>Majority of days in year</Name>
-      <Description>More than 6 months. This should be changed to 184 in a leap year</Description>
+      <Description>More than 6 months. Most years this is 183 days, but it's 184 in a leap year</Description>
       <TaxYear>2024</TaxYear>
       <Derived>
         <Switch>
@@ -223,7 +223,7 @@
     </Fact>
 
     <Fact path="/minorityOfDaysInYear">
-      <Description>Less than 6 months. This may need to manually change in a leap year.</Description>
+      <Description>Less than 6 months. Most years this is 182 days, but it's 183 in a leap year.</Description>
       <Derived>
         <Subtract>
           <Minuend>
