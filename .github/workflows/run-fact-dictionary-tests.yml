@@ -6,6 +6,7 @@ on:
       - '/direct-file/backend/src/main/resources/tax/**'
       - '/direct-file/backend/src/test/**'
       - '/direct-file/df-client/df-client-app/src/test/**'
+      - '/.github/workflows/run-fact-dictionary-tests.yml'
     branches:
       - '**'
   pull_request:
@@ -13,6 +14,7 @@ on:
       - '/direct-file/backend/src/main/resources/tax/**'
       - '/direct-file/backend/src/test/**'
       - '/direct-file/df-client/df-client-app/src/test/**'
+      - '/.github/workflows/run-fact-dictionary-tests.yml'
     branches: [main]
 
 jobs:
@@ -34,7 +36,8 @@ jobs:
           node-version: '18.20.4'
 
       - name: Install node
-        run: ../../../npm install
+        run: npm install
+        working-directory: /direct-file/df-client
 
       - name: Run fact dictionary tests
         run: npm run test factDictionaryTests
