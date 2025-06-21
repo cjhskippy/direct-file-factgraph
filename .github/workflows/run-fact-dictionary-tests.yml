@@ -6,7 +6,6 @@ on:
       - '/direct-file/backend/src/main/resources/tax/**'
       - '/direct-file/backend/src/test/**'
       - '/direct-file/df-client/df-client-app/src/test/**'
-      - '/.github/workflows/run-fact-dictionary-tests.yml'
     branches:
       - '**'
   pull_request:
@@ -14,7 +13,6 @@ on:
       - '/direct-file/backend/src/main/resources/tax/**'
       - '/direct-file/backend/src/test/**'
       - '/direct-file/df-client/df-client-app/src/test/**'
-      - '/.github/workflows/run-fact-dictionary-tests.yml'
     branches: [main]
 
 jobs:
