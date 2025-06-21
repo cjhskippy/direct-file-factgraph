@@ -1,0 +1,40 @@
+name: Run fact dictionary tests
+
+on:
+  push:
+    paths:
+      - '/direct-file/backend/src/main/resources/tax/**'
+      - '/direct-file/backend/src/test/**'
+      - '/direct-file/df-client/df-client-app/src/test/**'
+    branches:
+      - '**'
+  pull_request:
+    paths:
+      - '/direct-file/backend/src/main/resources/tax/**'
+      - '/direct-file/backend/src/test/**'
+      - '/direct-file/df-client/df-client-app/src/test/**'
+    branches: [main]
+
+jobs:
+  fact-dictionary-tests:
+    name: Run fact dictionary tests
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: /direct-file/df-client/df-client-app/src/test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.20.4'
+
+      - name: Install node
+        uses: ../../../npm install
+
+      - name: Run fact dictionary tests
+        run: npm run test factDictionaryTests
