@@ -22,7 +22,7 @@ class ModuloSpec extends AnyFunSpec:
                 new CompNodeConfigElement(
                   "Int",
                   Seq.empty,
-                  CommonOptionConfigTraits.value("5")
+                  CommonOptionConfigTraits.value("8")
                 )
               )
             ),
