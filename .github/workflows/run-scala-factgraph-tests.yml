@@ -4,7 +4,8 @@ on:
   push:
     paths:
       - 'direct-file/fact-graph-scala/**'
-    branches: [main]
+    branches: 
+      - "**"
   pull_request:
     paths:
       - 'direct-file/fact-graph-scala/**'
