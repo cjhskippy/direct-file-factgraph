@@ -40,6 +40,6 @@ class ModuloSpec extends AnyFunSpec:
         )
       )
 
-      assert(node.get(0) == Result.Complete(2))
+      assert(node.get(0) == Result.Complete(Int("2")))
     }
   }
