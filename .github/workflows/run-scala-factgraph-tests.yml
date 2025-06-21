@@ -3,16 +3,16 @@ name: Run Scala Fact-Graph test suite
 on:
   push:
     paths:
-      - 'direct-file/backend/**'
+      - 'direct-file/fact-graph-scala/**'
     branches: [main]
   pull_request:
     paths:
-      - 'direct-file/backend/**'
+      - 'direct-file/fact-graph-scala/**'
     branches: [main]
 
 jobs:
-  backend-tests:
-    name: Run Scala Backend Tests
+  scala-tests:
+    name: Run Scala Fact Graph Tests
     runs-on: ubuntu-latest
 
     defaults:
