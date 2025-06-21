@@ -934,7 +934,7 @@
     <Fact path="/apfForm1099MiscPayerEin">
       <Description>The EIN of the payer on the 1099-Misc form for the Alaska Permanent Fund Dividend.</Description>
       <Derived>
-        <!--      The alaskaPFD (https://pfd.alaska.gov/payments/tax-information) Federal Tax Identification number is 92-6001185-->
+        <!-- The alaskaPFD (https://pfd.alaska.gov/payments/tax-information) Federal Tax Identification number is 92-6001185 -->
         <EIN>926001185</EIN>
       </Derived>
     </Fact>
