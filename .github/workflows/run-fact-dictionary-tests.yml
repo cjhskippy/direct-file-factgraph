@@ -24,7 +24,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: /direct-file/df-client/df-client-app/src/test
+        working-directory: direct-file/df-client/df-client-app/src/test
 
     steps:
       - name: Checkout repository
@@ -37,7 +37,7 @@ jobs:
 
       - name: Install node
         run: npm install
-        working-directory: /direct-file/df-client
+        working-directory: direct-file/df-client
 
       - name: Run fact dictionary tests
         run: npm run test factDictionaryTests
