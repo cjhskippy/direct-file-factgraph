@@ -43,5 +43,9 @@ jobs:
         run: npm run generate-fact-dictionary
         working-directory: direct-file/df-client/df-client-app
 
+      - name: Check fact dictionary formatting
+        run: mvn spotless:check
+        working-directory: direct-file/backend
+
       - name: Run fact dictionary tests
         run: npm run test factDictionaryTests
