@@ -39,5 +39,9 @@ jobs:
         run: npm install
         working-directory: direct-file/df-client
 
+      - name: Generate fact dictionary files
+        run: npm run generate-fact-dictionary
+        working-directory: direct-file/df-client/df-client-app
+
       - name: Run fact dictionary tests
         run: npm run test factDictionaryTests
