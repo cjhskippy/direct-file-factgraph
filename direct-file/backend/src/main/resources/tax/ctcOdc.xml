@@ -191,7 +191,9 @@
 
     <Fact path="/maxCtcAmount">
       <Name>Maximum child tax credit amount</Name>
-      <Description>The maximum child tax credit per child</Description>
+      <Description>The maximum child tax credit per child. Established in 26 U.S. Code § 24.
+        Under current legislation, this reduces to $1,000 for TY 2026. Can be found in instructions
+        for Schedule 8812.</Description>
       <TaxYear>2024</TaxYear>
 
       <Derived>
@@ -248,8 +250,9 @@
     <Fact path="/totalPotentialOdc">
       <Name>Total potential ODC</Name>
       <Description>The maximum amount of the Credit for Other Dependents that could be claimed.
-        Reported on line 7 of
-        Schedule 8812.</Description>
+        Established in 26 U.S. Code § 24. Under current legislation, ODC expires as a credit in TY 2026.
+        Reported on line 7 of Schedule 8812.</Description>
+      <TaxYear>2024</TaxYear>
       <Export mef="true" />
 
       <Derived>
@@ -313,9 +316,10 @@
 
     <Fact path="/dependentCreditPhaseoutThreshold">
       <Name>Dependent credit phaseout threshold</Name>
-      <Description>The MAGI threshold at which the dependent credits begin to phaseout. Reported on
-        line 9 of Schedule
-        8812.</Description>
+      <Description>The MAGI threshold at which the dependent credits begin to phaseout.
+        Set in 26 U.S. Code § 24. Under current legislation, amounts shown here persist through TY2025
+        and then revert to $110,000 MFJ / $75,000 not married / $55,000 MFS for TY 2026.
+        Reported on line 9 of Schedule 8812.</Description>
       <Export mef="true" />
       <TaxYear>2024</TaxYear>
 
@@ -806,8 +810,9 @@
 
     <Fact path="/maxActcAmount">
       <Name>Maximum additional child tax credit amount</Name>
-      <Description>The maximum additional tax credit per child
-        Rev Proc .05 Child Tax Credit §24(d)(1)(A)
+      <Description>The maximum additional tax credit per child. Established in 26 U.S. Code § 24.
+        This is adjusted for inflation annually, with special rules applied through TY 2025.
+        See inflation adjustment Rev Proc section .05 Child Tax Credit §24(d)(1)(A) for annual amounts.
       </Description>
       <TaxYear>2024</TaxYear>
 
@@ -857,8 +862,8 @@
     <Fact path="/actcRefundabilityThreshold">
       <Name>Additional CTC refundability threshold</Name>
       <Description>The amount of earned income that must be exceeded in order to receive the
-        refundable additional child
-        tax credit.</Description>
+        refundable additional child tax credit. Set in 26 U.S. Code § 24. Under current legislation,
+        reverts to $3,000 in TY 2026.</Description>
       <TaxYear>2024</TaxYear>
 
       <Derived>
