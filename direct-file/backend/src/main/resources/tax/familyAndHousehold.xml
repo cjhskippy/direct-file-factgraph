@@ -3857,8 +3857,10 @@
     <Fact path="/familyAndHousehold/*/eligibleCtc">
       <Name>Eligible for the Child Tax Credit</Name>
       <Description>The dependent is eligible for the Child Tax Credit (CTC). Eligibility rules are
-        established in 26 U.S. Code § 24. Under current legislation, the requirement to have a SSN 
-        and include it on the return expires after TY 2025.
+        established in 26 U.S.
+        Code § 24. Under current legislation, the requirement to have a SSN
+        and include it on the return expires after TY
+        2025.
         See instructions for Schedule 8812 for current tax year guidance.</Description>
       <TaxYear>2024</TaxYear>
       <Export downstreamFacts="true" />
