@@ -3,18 +3,18 @@ name: Run fact dictionary tests
 on:
   push:
     paths:
-      - '/direct-file/backend/src/main/resources/tax/**'
-      - '/direct-file/backend/src/test/**'
-      - '/direct-file/df-client/df-client-app/src/test/**'
-      - '/.github/workflows/run-fact-dictionary-tests.yml'
+      - 'direct-file/backend/src/main/resources/tax/**'
+      - 'direct-file/backend/src/test/**'
+      - 'direct-file/df-client/df-client-app/src/test/**'
+      - '.github/workflows/run-fact-dictionary-tests.yml'
     branches:
       - '**'
   pull_request:
     paths:
-      - '/direct-file/backend/src/main/resources/tax/**'
-      - '/direct-file/backend/src/test/**'
-      - '/direct-file/df-client/df-client-app/src/test/**'
-      - '/.github/workflows/run-fact-dictionary-tests.yml'
+      - 'direct-file/backend/src/main/resources/tax/**'
+      - 'direct-file/backend/src/test/**'
+      - 'direct-file/df-client/df-client-app/src/test/**'
+      - '.github/workflows/run-fact-dictionary-tests.yml'
     branches: [main]
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: /direct-file/df-client/df-client-app/src/test
+        working-directory: direct-file/df-client/df-client-app/src/test
 
     steps:
       - name: Checkout repository
@@ -37,7 +37,11 @@ jobs:
 
       - name: Install node
         run: npm install
-        working-directory: /direct-file/df-client
+        working-directory: direct-file/df-client
+
+      - name: Generate fact dictionary files
+        run: npm run generate-fact-dictionary
+        working-directory: direct-file/df-client/df-client-app
 
       - name: Run fact dictionary tests
         run: npm run test factDictionaryTests
