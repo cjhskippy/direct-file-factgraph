@@ -3,18 +3,18 @@ name: Run fact dictionary tests
 on:
   push:
     paths:
-      - '/direct-file/backend/src/main/resources/tax/**'
-      - '/direct-file/backend/src/test/**'
-      - '/direct-file/df-client/df-client-app/src/test/**'
-      - '/.github/workflows/run-fact-dictionary-tests.yml'
+      - 'direct-file/backend/src/main/resources/tax/**'
+      - 'direct-file/backend/src/test/**'
+      - 'direct-file/df-client/df-client-app/src/test/**'
+      - '.github/workflows/run-fact-dictionary-tests.yml'
     branches:
       - '**'
   pull_request:
     paths:
-      - '/direct-file/backend/src/main/resources/tax/**'
-      - '/direct-file/backend/src/test/**'
-      - '/direct-file/df-client/df-client-app/src/test/**'
-      - '/.github/workflows/run-fact-dictionary-tests.yml'
+      - 'direct-file/backend/src/main/resources/tax/**'
+      - 'direct-file/backend/src/test/**'
+      - 'direct-file/df-client/df-client-app/src/test/**'
+      - '.github/workflows/run-fact-dictionary-tests.yml'
     branches: [main]
 
 jobs:
