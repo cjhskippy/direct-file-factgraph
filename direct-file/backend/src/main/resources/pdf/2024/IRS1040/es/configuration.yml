@@ -114,7 +114,7 @@ form:
       f2_06[0]: /line8OfSchedule3
       f2_07[0]: /nonRefundableCredits
       f2_08[0]: /taxLessNonRefundableCredits
-      f2_09[0]: /line21OfSchedule2
+      f2_09[0]: /totalOtherTaxes
       f2_10[0]: /totalTax
       f2_11[0]: /formW2Withholding
       f2_12[0]: /form1099Withholding
