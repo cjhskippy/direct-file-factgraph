@@ -108,11 +108,11 @@ export const AmountSubcategory = (
             itemKey: `excessAdvancePTC`,
           },
           {
-            itemKey: `addtionalTaxes`,
+            itemKey: `additionalTaxes`,
             showTopBorder: true,
           },
         ]}
-        condition={`/owesPtc`}
+        condition={`/hasAdditionsToTax`}
       />
       <SummaryTable
         i18nKey='/info/your-taxes/amount/tax-amount-explanation-credits'

@@ -7113,7 +7113,7 @@ info:
             modals:
               text: <sharedModalExcessAptc>PTC avanzado en exceso que debes devolver</sharedModalExcessAptc>
         td: "+{{/lesserOfNetPtcAmountAndRepaymentLimitation}}"
-      addtionalTaxes:
+      additionalTaxes:
         th: <strong>Cantidad del impuesto inicial con los impuestos adicionales</strong>
         td: <strong>{{/totalTentativeTax}}</strong>
   /info/your-taxes/amount/tax-amount-explanation-credits:
