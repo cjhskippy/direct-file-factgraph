@@ -11699,7 +11699,7 @@ info:
             modals:
               text: <sharedModalExcessAptc>Excess advance PTC repayment</sharedModalExcessAptc>
         td: "+{{/lesserOfNetPtcAmountAndRepaymentLimitation}}"
-      addtionalTaxes:
+      additionalTaxes:
         th: <strong>Initial tax amount with additional taxes</strong>
         td: <strong>{{/totalTentativeTax}}</strong>
   /info/your-taxes/amount/tax-amount-explanation-credits:

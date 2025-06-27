@@ -49,5 +49,37 @@
         </Switch>
       </Derived>
     </Fact>
+
+    <Fact path="/hasAdditionsToTax">
+      <Description>True if any of the additions to tax reported on Line 3 of schedule 2 apply.</Description>
+      <Derived>
+        <Switch>
+          <Case>
+            <When>
+              <GreaterThan>
+                <Left>
+                  <Dependency path="/totalAdditionalTaxesOwed" />
+                </Left>
+                <Right>
+                  <Dollar>0</Dollar>
+                </Right>
+              </GreaterThan>
+            </When>
+            <Then>
+              <True />
+            </Then>
+          </Case>
+          <Case>
+            <When>
+              <True />
+            </When>
+            <Then>
+              <False />
+            </Then>
+          </Case>
+        </Switch>
+      </Derived>
+    </Fact>
+
   </Facts>
 </FactDictionaryModule>
