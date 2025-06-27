@@ -1385,16 +1385,6 @@
       </Derived>
     </Fact>
 
-    <Fact path="/totalOtherTaxes">
-      <Name>Total other taxes</Name>
-      <Description>Other taxes, including self-employment.
-        Reported on Line 21 of schedule 2 and Form 1040 line 23.
-      </Description>
-      <Derived>
-        <Dollar>0</Dollar>
-      </Derived>
-    </Fact>
-
     <Fact path="/totalTax">
       <Name>Total tax</Name>
       <Description>Total tax as reported on line 24 of Form 1040.</Description>
