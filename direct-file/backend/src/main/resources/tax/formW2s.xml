@@ -293,48 +293,6 @@
       </Derived>
     </Fact>
 
-    <Fact path="/maxMFSMedicareWages">
-      <Name>Maximum Medicare Wages for an MFS Filer</Name>
-      <Description>The maximum medicare wages (W-2 Box 5) a MFS filer might have without possibly
-        needing to pay
-        Additional Medicare Tax</Description>
-      <Derived>
-        <Dollar>125000</Dollar>
-      </Derived>
-    </Fact>
-
-    <Fact path="/maxMFJMedicareWages">
-      <Name>Maximum Medicare Wages for an MRJ Filer</Name>
-      <Description>The maximum medicare wages (W-2 Box 5) a MFS filer might have without possibly
-        needing to pay
-        Additional Medicare Tax</Description>
-      <Derived>
-        <Dollar>250000</Dollar>
-      </Derived>
-    </Fact>
-
-    <Fact path="/maxNonMFSorMFJMedicareWages">
-      <Name>Maximum Medicare Wages for non-MFS Filer</Name>
-      <Description>The maximum medicare wages (W-2 Box 5) filers with a status other than MFS might
-        have without
-        possibly
-        needing to pay Additional Medicare Tax</Description>
-      <Derived>
-        <Dollar>200000</Dollar>
-      </Derived>
-    </Fact>
-
-    <Fact path="/maxIndividualMedicareWages">
-      <Name>Maximum Medicare Wages for non-MFS Filer</Name>
-      <Description>The maximum medicare wages (W-2 Box 5) any individual on a return could have
-        before needing to pay
-        Additonal Medicare Tax</Description>
-      <Derived>
-        <Dollar>200000</Dollar>
-      </Derived>
-    </Fact>
-
-
     <Fact path="/maxOasdiWagesOnMultipleW2sForOnePerson">
       <Name>Maximum Social Security Wages On Multiple W2s for one person</Name>
       <Description>The limit of Social Security Wages that one filer can have across multiple W2s
@@ -574,41 +532,6 @@
       </Derived>
     </Fact>
 
-    <Fact path="/medicareWagesAdditionalTaxThreshhold">
-      <Name>Medicare Wages Additonal Tax Threshhold</Name>
-      <Description>The filing-status based threshold at which a filer might need to pay aditional
-        medicare taxes and
-        thereby requires form 8959</Description>
-      <Derived>
-        <Switch>
-          <Case>
-            <When>
-              <Dependency module="filingStatus" path="/isFilingStatusMFS" />
-            </When>
-            <Then>
-              <Dependency path="/maxMFSMedicareWages" />
-            </Then>
-          </Case>
-          <Case>
-            <When>
-              <Dependency module="filingStatus" path="/isFilingStatusMFJ" />
-            </When>
-            <Then>
-              <Dependency path="/maxMFJMedicareWages" />
-            </Then>
-          </Case>
-          <Case>
-            <When>
-              <True />
-            </When>
-            <Then>
-              <Dependency path="/maxNonMFSorMFJMedicareWages" />
-            </Then>
-          </Case>
-        </Switch>
-      </Derived>
-    </Fact>
-
     <Fact path="/knockoutMedicareWages">
       <Name>Knockout if Medicare Wages Great Than Max for filing status</Name>
       <Description>Knockout the filer if their total medicare wages are above the limit for their
@@ -618,13 +541,13 @@
 
       <Derived>
         <Any>
-          <Dependency path="/anyFilerExceedsEligibleForMedicareWagesCredit" />
+          <Dependency module="additionalMedicareTax" path="/anyW2ExceedsMaxIndividualWages" />
           <GreaterThan>
             <Left>
               <Dependency path="/formW2totalMedicareWages" />
             </Left>
             <Right>
-              <Dependency path="/medicareWagesAdditionalTaxThreshhold" />
+              <Dependency module="additionalMedicareTax" path="/medicareWagesAdditionalTaxThreshhold" />
             </Right>
           </GreaterThan>
         </Any>
@@ -669,7 +592,7 @@
         entitle them to a socail security refund?</Description>
       <Derived>
         <All>
-          <!-- Does the primary filer have multiple W2s -->
+          <!-- Does the secondary filer have multiple W2s -->
           <GreaterThan>
             <Left>
               <Dependency path="/secondaryFilerW2sCount"></Dependency>
@@ -1356,13 +1279,35 @@
       </Derived>
     </Fact>
 
+    <Fact path="/formW2s/*/medicareWagesRequireForm8959">
+      <Description>If any single W-2 has medicare wages in Box 5 that exceed a per-W2 threshold, the filer
+        must file form
+        8959.</Description>
+      <Export downstreamFacts="true" />
+      <Derived>
+        <GreaterThan>
+          <Left>
+            <Dependency path="../medicareWages" />
+          </Left>
+          <Right>
+            <Dependency module="additionalMedicareTax" path="/perW2MedicareWageThreshold" />
+          </Right>
+        </GreaterThan>
+      </Derived>
+    </Fact>
+
     <Fact path="/formW2totalMedicareWages">
       <Name>Total Medicare Wages</Name>
-      <Description>The sum of all medicare wages across Form W-2s</Description>
+      <Description>The sum of all medicare wages across Form W-2s.
+        This is shown on Box 1 of Form 8959 when that form is
+        required to be filed.
+      </Description>
       <Derived>
-        <CollectionSum>
-          <Dependency path="/formW2s/*/medicareWages"></Dependency>
-        </CollectionSum>
+        <Round>
+          <CollectionSum>
+            <Dependency path="/formW2s/*/medicareWages"></Dependency>
+          </CollectionSum>
+        </Round>
       </Derived>
     </Fact>
 
