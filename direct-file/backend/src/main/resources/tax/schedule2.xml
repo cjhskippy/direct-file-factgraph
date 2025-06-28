@@ -11,7 +11,7 @@
           </IsComplete>
           <GreaterThan>
             <Left>
-              <Dependency module="taxCalculations" path="/totalOtherTaxes" />
+              <Dependency path="/totalOtherTaxes" />
             </Left>
             <Right>
               <Dollar>0</Dollar>
@@ -28,6 +28,7 @@
 
         Currently only supports the Additional Medicare Tax. All other taxes in lines 4 to 20 not supported.
       </Description>
+      <Export downstreamFacts="true" />
       <Derived>
         <Add>
           <Dependency module="additionalMedicareTax" path="/totalAdditionalMedicareTax" />
