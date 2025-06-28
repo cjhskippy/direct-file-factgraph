@@ -266,25 +266,6 @@ export const JobIncomeSubcategory = (
             batches={[`data-import-w2`]}
           />
           <DFAccordion
-            i18nKey='/info/knockout/medicare-wages-accordion-mfs'
-            conditions={[{ condition: `/knockoutMedicareWages` }, { condition: `/isFilingStatusMFS` }]}
-            batches={[`data-import-w2`]}
-          />
-          <DFAccordion
-            i18nKey='/info/knockout/medicare-wages-accordion-mfj'
-            conditions={[{ condition: `/knockoutMedicareWages` }, { condition: `/isFilingStatusMFJ` }]}
-            batches={[`data-import-w2`]}
-          />
-          <DFAccordion
-            i18nKey='/info/knockout/medicare-wages-accordion-single'
-            conditions={[
-              { condition: `/knockoutMedicareWages` },
-              { operator: `isFalse`, condition: `/isFilingStatusMFJ` },
-              { operator: `isFalse`, condition: `/isFilingStatusMFS` },
-            ]}
-            batches={[`data-import-w2`]}
-          />
-          <DFAccordion
             i18nKey='/info/knockout/allocated-tips-primary-filer-accordion'
             condition='/formW2WithAllocatedTips'
             batches={[`data-import-w2`]}
@@ -605,35 +586,6 @@ export const JobIncomeSubcategory = (
           <DFAlert i18nKey='/info/knockout/generic-other-ways-to-file' headingLevel='h2' type='warning' />
           <KnockoutButton i18nKey='button.knockout' />
         </Screen>
-        <Gate condition='/knockoutMedicareWages'>
-          <Screen route='medicare-wages-ko' condition='/anyFilerRequiredToPayExtraMedicareTax' isKnockout={true}>
-            <IconDisplay name='ErrorOutline' size={9} isCentered />
-            <Heading i18nKey='/heading/knockout/medicare-wages-mfj' condition='/isFilingStatusMFJ' />
-            <Heading
-              i18nKey='/heading/knockout/medicare-wages'
-              condition={{ operator: `isFalseOrIncomplete`, condition: `/isFilingStatusMFJ` }}
-            />
-            <InfoDisplay
-              i18nKey='/info/knockout/medicare-wages'
-              condition={{ operator: `isFalseOrIncomplete`, condition: `/isFilingStatusMFJ` }}
-            />
-            <InfoDisplay i18nKey='/info/knockout/medicare-wages-mfj' condition='/isFilingStatusMFJ' />
-            <DFAlert i18nKey='/info/knockout/generic-other-ways-to-file' headingLevel='h2' type='warning' />
-            <KnockoutButton i18nKey='button.knockout' />
-          </Screen>
-          <Screen
-            route='medicare-wages-ko-credit'
-            condition='/anyFilerExceedsEligibleForMedicareWagesCredit'
-            isKnockout={true}
-          >
-            <IconDisplay name='ErrorOutline' size={9} isCentered />
-            <Heading i18nKey='/heading/knockout/medicare-wages-credit' />
-            <InfoDisplay i18nKey='/info/knockout/medicare-wages-credit' />
-            <DFAlert i18nKey='/info/knockout/generic-other-ways-to-file' headingLevel='h2' type='warning' />
-
-            <KnockoutButton i18nKey='button.knockout' />
-          </Screen>
-        </Gate>
         <Screen route='w2-allocated-tips-ko' condition='/flowKnockoutAllocatedTips' isKnockout={true}>
           <IconDisplay name='ErrorOutline' size={9} isCentered />
           <Heading i18nKey='/heading/knockout/forms-missing/allocated-tips' />

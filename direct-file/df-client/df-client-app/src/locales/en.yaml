@@ -2683,11 +2683,6 @@ headings:
     the Presidential Election Campaign Fund?
   /heading/other-preferences/create-self-select-pin: Create a Self-Select PIN to confirm your identity next year.
   /heading/federal-tax-return: "{{/taxYear}} federal tax return details"
-  /heading/knockout/medicare-wages: Direct File doesn’t yet support the amount of income you received.
-  /heading/knockout/medicare-wages-mfj:
-    Direct File doesn’t yet support the amount of income you and your spouse received.
-  /heading/knockout/medicare-wages-credit:
-    Direct File doesn’t yet support the amount of income you or your spouse received.
   /heading/knockout/add-person-born-died-no-tin: Direct File doesn’t support this yet
   /heading/knockout/no-payments-or-credit:
     Based on your responses, you don’t need to file a federal tax return for {{/taxYear}}.
@@ -12521,47 +12516,6 @@ info:
   /info/knockout/income/jobs/w2-part-year-yonkers-ko:
     body: >-
       You earned income in Yonkers but didn’t live in Yonkers, or you lived in Yonkers for only part of {{/taxYear}}.
-  /info/knockout/medicare-wages:
-    heading: Box 5 - Medicare wages and tips
-    body: >-
-      You received {{/formW2totalMedicareWages}} in Medicare wages. This tool doesn’t yet support Medicare wages over
-      {{/medicareWagesAdditionalTaxThreshhold}} for your filing status of {{/filingStatusCapitalized}}, as you may be
-      required to pay Additional Medicare Tax.
-  /info/knockout/medicare-wages-accordion-mfs:
-    heading: Box 5 - Medicare wages and tips
-    body:
-      - p: Direct File doesn’t yet support the amount of income you received.
-      - p:
-          You received {{/formW2totalMedicareWages}} in Medicare wages. This tool doesn’t yet support Medicare wages
-          over $125,000 for your filing status of Married Filing Separately, as you may be required to pay Additional
-          Medicare Tax.
-  /info/knockout/medicare-wages-mfj:
-    body: >-
-      You received {{/formW2totalMedicareWages}} in Medicare wages. This tool doesn’t yet support Medicare wages over
-      {{/medicareWagesAdditionalTaxThreshhold}} for your filing status of {{/filingStatusCapitalized}}, as you may be
-      required to pay Additional Medicare Tax.
-  /info/knockout/medicare-wages-accordion-mfj:
-    heading: Box 5 - Medicare wages and tips
-    body:
-      - p: Direct File doesn’t yet support the amount of income you and your spouse received.
-      - p:
-          You received {{/formW2totalMedicareWages}} in Medicare wages. This tool doesn’t yet support Medicare wages
-          over $250,000 for your filing status of Married Filing Jointly, as you may be required to pay Additional
-          Medicare Tax.
-  /info/knockout/medicare-wages-accordion-single:
-    heading: Box 5 - Medicare wages and tips
-    body:
-      - p: Direct File doesn’t yet support the amount of income you received.
-      - p:
-          You received {{/formW2totalMedicareWages}} in Medicare wages. This tool doesn’t yet support Medicare wages
-          over $200,000 for your filing status of {{/filingStatus}}, as you may be required to pay Additional Medicare
-          Tax.
-
-  /info/knockout/medicare-wages-credit:
-    body: >-
-      You or your spouse received {{/maxMedicareWagesForAnyFilerOnReturn}}. This tool doesn’t yet support Medicare wages
-      over {{/maxIndividualMedicareWages}} for 1 person for your filing status of {{/filingStatusCapitalized}} as you
-      may be eligible for a credit for any withheld Additional Medicare Tax.
   /info/knockout/retirement/1099-r-allocable-irr:
     body:
       - p:

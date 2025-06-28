@@ -33,7 +33,6 @@
           <Dependency module="formW2s" path="/flowKnockoutThirdPartySickPay" />
           <Dependency module="formW2s" path="/flowKnockoutBox15IncomeFromDifferentState" />
           <Dependency module="formW2s" path="/flowKnockoutNonQualifiedPlans" />
-          <Dependency module="formW2s" path="/knockoutMedicareWages" />
           <Dependency module="formW2s" path="/hasABox14NYRRTAValueWeKnockout" />
           <Dependency module="formW2s" path="/anyFilerExceedsMaxOasdiWages" />
           <Dependency module="formW2s" path="/flowKnockoutHasRRTACodesInBox14" />
