@@ -506,6 +506,27 @@
       </Derived>
     </Fact>
 
+    <Fact path="/flowKnockoutHasRRTACodesInBox14">
+      <Name>Knockout due to having RRTA codes in Box 14</Name>
+      <Description>Everyone with RRTA codes in Box 14 gets KO'ed. Even in NY.</Description>
+      <Export downstreamFacts="true" />
+
+      <Derived>
+        <GreaterThan>
+          <Left>
+            <CollectionSize>
+              <Filter path="/formW2s">
+                <Dependency path="hasRRTACodesInBox14" />
+              </Filter>
+            </CollectionSize>
+          </Left>
+          <Right>
+            <Int>0</Int>
+          </Right>
+        </GreaterThan>
+      </Derived>
+    </Fact>
+
     <Fact path="/flowKnockoutHasRRTACodesInBox14NotInNY">
       <Name>Knockout Due to having RRTA codes in Box 14</Name>
       <Description>Knockout Due to having RRTA codes in Box 14</Description>
@@ -513,18 +534,7 @@
 
       <Derived>
         <All>
-          <GreaterThan>
-            <Left>
-              <CollectionSize>
-                <Filter path="/formW2s">
-                  <Dependency path="hasRRTACodesInBox14" />
-                </Filter>
-              </CollectionSize>
-            </Left>
-            <Right>
-              <Int>0</Int>
-            </Right>
-          </GreaterThan>
+          <Dependency path="/flowKnockoutHasRRTACodesInBox14"></Dependency>
           <Not>
             <Dependency module="filers" path="/livedInNy"></Dependency>
           </Not>
