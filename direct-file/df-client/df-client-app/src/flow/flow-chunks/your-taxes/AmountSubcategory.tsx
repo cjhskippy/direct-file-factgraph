@@ -115,8 +115,7 @@ export const AmountSubcategory = (
         condition={`/hasAdditionsToTax`}
       />
       <SummaryTable
-        i18nKey='/info/your-taxes/amount/tax-amount-explanation-credits'
-        batches={[`ptc-1`]}
+        i18nKey='/info/your-taxes/amount/tax-amount-explanation-nonrefundable-credits'
         items={[
           {
             itemKey: `nonrefundableCredits`,
@@ -147,6 +146,28 @@ export const AmountSubcategory = (
             conditions: [`/isReceivingSaversCredit`],
             indent: true,
           },
+          {
+            itemKey: `taxAmount`,
+            showTopBorder: true,
+          },
+        ]}
+      />
+      <SummaryTable
+        i18nKey='/info/your-taxes/amount/tax-amount-explanation-with-other-taxes'
+        items={[
+          {
+            itemKey: `additionalMedicareTax`,
+          },
+          {
+            itemKey: `taxAmount`,
+            showTopBorder: true,
+          },
+        ]}
+        condition={`/hasOtherTaxes`}
+      />
+      <SummaryTable
+        i18nKey='/info/your-taxes/amount/tax-amount-explanation-refundable-credits'
+        items={[
           {
             itemKey: `refundableCredits`,
             conditions: [`/isReceivingRefundableCredits`],

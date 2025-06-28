@@ -11697,10 +11697,10 @@ info:
       additionalTaxes:
         th: <strong>Initial tax amount with additional taxes</strong>
         td: <strong>{{/totalTentativeTax}}</strong>
-  /info/your-taxes/amount/tax-amount-explanation-credits:
+  /info/your-taxes/amount/tax-amount-explanation-nonrefundable-credits:
     sections:
-      explainer: Then we applied your credits
-      caption: Tax amount with tax credits applied
+      explainer: Then we applied your nonrefundable credits
+      caption: Tax amount with nonrefundable credits applied
       nonrefundableCredits:
         helpText:
           modals:
@@ -11738,6 +11738,27 @@ info:
       savers:
         th: Saver’s Credit
         td: "-{{/qualifiedSaverCreditAmount}}"
+      taxAmount:
+        th: <strong>Tax amount with nonrefundable credits applied</strong>
+        td: <strong>{{/taxLessNonRefundableCredits}}</strong>
+  /info/your-taxes/amount/tax-amount-explanation-with-other-taxes:
+    sections:
+      explainer:
+        body: Then we added other taxes that cannot be offset by nonrefundable credits
+      caption: Tax amount after applying other taxes
+      additionalMedicareTax:
+        th:
+          helpText:
+            modals:
+              text: Additional Medicare Tax
+        td: "+{{/totalAdditionalMedicareTax}}"
+      taxAmount:
+        th: <strong>Tax amount after applying other taxes</strong>
+        td: <strong>{{/totalTax}}</strong>
+  /info/your-taxes/amount/tax-amount-explanation-refundable-credits:
+    sections:
+      explainer: Then we applied your nonrefundable credits
+      caption: Tax amount with refundable credits applied
       refundableCredits:
         helpText:
           modals:
@@ -11765,7 +11786,7 @@ info:
         th: Earned Income Tax Credit
         td: "-{{/earnedIncomeCredit}}"
       taxAmount:
-        th: <strong>Tax amount with credits applied</strong>
+        th: <strong>Tax amount with refundable credits applied</strong>
         td: <strong>{{/taxWithCreditsApplied}}</strong>
   /info/your-taxes/amount/tax-amount-explanation-final:
     sections:
