@@ -36,7 +36,7 @@
           <Dependency module="formW2s" path="/knockoutMedicareWages" />
           <Dependency module="formW2s" path="/hasABox14NYRRTAValueWeKnockout" />
           <Dependency module="formW2s" path="/anyFilerExceedsMaxOasdiWages" />
-          <Dependency module="formW2s" path="/flowKnockoutHasRRTACodesInBox14NotInNY" />
+          <Dependency module="formW2s" path="/flowKnockoutHasRRTACodesInBox14" />
           <Dependency module="formW2s" path="/knockoutYonkersPartYear" />
           <Dependency module="form1099Rs" path="/flowKnockoutRetirementTaxableAmountNotDetermined" />
           <Dependency module="form1099Rs"
