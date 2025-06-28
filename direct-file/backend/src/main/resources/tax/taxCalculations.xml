@@ -1589,8 +1589,11 @@
 
     <Fact path="/taxWithCreditsApplied">
       <Name>Tax With Credits Applied</Name>
-      <Description>The amount that total payments exceed total taxes. Report on line 34 of Form
-        1040.</Description>
+      <Description>The amount of taxes after applying nonrefundable credits to the total tax.
+        This does not correspond to
+        a single line on Form 1040, but it is equivalent to
+        subtracting 1040 line 32 from line 24.
+      </Description>
 
       <Derived>
         <Subtract>
