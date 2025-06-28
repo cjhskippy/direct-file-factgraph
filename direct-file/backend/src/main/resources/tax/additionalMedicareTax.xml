@@ -1,0 +1,120 @@
+<?xml-model href="./FactDictionaryModule.rng"?>
+<FactDictionaryModule>
+  <Facts>
+    <!--
+     #############################################################
+     ### Facts to complete form 8959 - Additional Medicare Tax
+     ### At this time, only Part I and Part V of the form are supported.
+     #############################################################
+   -->
+
+    <Fact path="/maxMFSMedicareWages">
+      <Name>Maximum Medicare Wages for an MFS Filer</Name>
+      <Description>The maximum medicare wages (W-2 Box 5) a MFS filer might have without possibly
+        needing to pay
+        Additional Medicare Tax
+        Defined in 26 CFR § 31.3101-2
+      </Description>
+      <Derived>
+        <Dollar>125000</Dollar>
+      </Derived>
+    </Fact>
+
+    <Fact path="/maxMFJMedicareWages">
+      <Name>Maximum Medicare Wages for an MRJ Filer</Name>
+      <Description>The maximum medicare wages (W-2 Box 5) a MFS filer might have without possibly
+        needing to pay
+        Additional Medicare Tax
+        Defined in 26 CFR § 31.3101-2
+      </Description>
+      <Derived>
+        <Dollar>250000</Dollar>
+      </Derived>
+    </Fact>
+
+    <Fact path="/maxNonMFSorMFJMedicareWages">
+      <Name>Maximum Medicare Wages for non-MFS Filer</Name>
+      <Description>The maximum medicare wages (W-2 Box 5) filers with a status other than MFS might
+        have without possibly
+        needing to pay Additional Medicare Tax.
+        Defined in 26 CFR § 31.3101-2
+      </Description>
+      <Derived>
+        <Dollar>200000</Dollar>
+      </Derived>
+    </Fact>
+
+    <Fact path="/perW2MedicareWageThreshold">
+      <Name>Maximum Medicare Wages on a W-2 for Additional Medicare Tax</Name>
+      <Description>The maximum medicare wages (W-2 Box 5) any W-2 on a return could have
+        before needing to file Form 8959
+        to calculate the Additional Medicare Tax
+        Or potentially refund excess withholdings
+        TODO - Add test scenario for
+        MFJ, W-2 over 200k but under MFJ limit
+        TODO - Add test scenario for MFJ, Two W-2s, both under 200k but combined
+        over 200k, combined under 250k
+        See "Who must file" on form 8959 instructions.
+      </Description>
+      <Export downstreamFacts="true" />
+      <Derived>
+        <Dollar>200000</Dollar>
+      </Derived>
+    </Fact>
+
+    <Fact path="/anyW2ExceedsMaxIndividualWages">
+      <Description>The filer has at least one W-2 that triggers filing form 8959.
+      </Description>
+
+      <Derived>
+        <GreaterThan>
+          <Left>
+            <Count>
+              <Dependency module="formW2s" path="/formW2s/*/medicareWagesRequireForm8959" />
+            </Count>
+          </Left>
+          <Right>
+            <Int>0</Int>
+          </Right>
+        </GreaterThan>
+      </Derived>
+    </Fact>
+
+    <Fact path="/medicareWagesAdditionalTaxThreshhold">
+      <Name>Medicare Wages Additonal Tax Threshhold</Name>
+      <Description>The filing-status based threshold at which a filer might need to pay aditional
+        medicare taxes and
+        thereby requires Form 8959.
+        Reported on Form 8959 line 5 when required.</Description>
+      <Derived>
+        <Switch>
+          <Case>
+            <When>
+              <Dependency module="filingStatus" path="/isFilingStatusMFS" />
+            </When>
+            <Then>
+              <Dependency path="/maxMFSMedicareWages" />
+            </Then>
+          </Case>
+          <Case>
+            <When>
+              <Dependency module="filingStatus" path="/isFilingStatusMFJ" />
+            </When>
+            <Then>
+              <Dependency path="/maxMFJMedicareWages" />
+            </Then>
+          </Case>
+          <Case>
+            <When>
+              <True />
+            </When>
+            <Then>
+              <Dependency path="/maxNonMFSorMFJMedicareWages" />
+            </Then>
+          </Case>
+        </Switch>
+      </Derived>
+    </Fact>
+
+  </Facts>
+</FactDictionaryModule>
