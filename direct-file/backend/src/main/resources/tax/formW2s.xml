@@ -6457,6 +6457,21 @@
       </Derived>
     </Fact>
 
+    <Fact path="/totalMedicareTaxesWithheld">
+      <Name>Medicare taxes withheld</Name>
+      <Description>The amount of medicare tax withheld.
+        Part of calculations for form 8959 line 19.</Description>
+      <Export downstreamFacts="true" mef="true" />
+
+      <Derived>
+        <Round>
+          <CollectionSum>
+            <Dependency path="/formW2s/*/medicareWithholding" />
+          </CollectionSum>
+        </Round>
+      </Derived>
+    </Fact>
+
     <Fact path="/socialSecurityTaxesWithheld">
       <Name>Social Security taxes withheld</Name>
       <Description>The amount of social security and medicare tax withheld, as defined by §24(d)(2).</Description>
@@ -6468,9 +6483,7 @@
             <CollectionSum>
               <Dependency path="/formW2s/*/oasdiWithholding" />
             </CollectionSum>
-            <CollectionSum>
-              <Dependency path="/formW2s/*/medicareWithholding" />
-            </CollectionSum>
+            <Dependency path="/totalMedicareTaxesWithheld" />
           </Add>
         </Round>
       </Derived>

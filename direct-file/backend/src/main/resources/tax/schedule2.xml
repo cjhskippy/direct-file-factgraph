@@ -9,6 +9,14 @@
           <IsComplete>
             <Dependency module="ptc" path="/netPtcAmountWhenNegative" />
           </IsComplete>
+          <GreaterThan>
+            <Left>
+              <Dependency module="taxCalculations" path="/totalOtherTaxes" />
+            </Left>
+            <Right>
+              <Dollar>0</Dollar>
+            </Right>
+          </GreaterThan>
         </Any>
       </Derived>
     </Fact>
@@ -17,9 +25,15 @@
       <Name>Total other taxes</Name>
       <Description>Other taxes, including self-employment.
         Reported on Line 21 of schedule 2 and Form 1040 line 23.
+
+        Currently only supports the Additional Medicare Tax. All other taxes in lines 4 to 20 not supported.
       </Description>
       <Derived>
-        <Dollar>0</Dollar>
+        <Add>
+          <Dependency module="additionalMedicareTax" path="/totalAdditionalMedicareTax" />
+          <!-- TODO eventually should include the many other taxes on schedule 2.
+          If you update this fact, be sure to also update /requiresSchedule2 -->
+        </Add>
       </Derived>
     </Fact>
 

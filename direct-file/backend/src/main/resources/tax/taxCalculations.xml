@@ -1387,16 +1387,17 @@
 
     <Fact path="/totalTax">
       <Name>Total tax</Name>
-      <Description>Total tax as reported on line 24 of Form 1040.</Description>
+      <Description>Total tax as reported on line 24 of Form 1040.
+        An expected constraint: both inputs should already be
+        rounded.</Description>
       <Export downstreamFacts="true" mef="true" />
       <ExportZero />
 
       <Derived>
-        <Round>
-          <Add>
-            <Dependency path="/taxLessNonRefundableCredits" />
-          </Add>
-        </Round>
+        <Add>
+          <Dependency path="/taxLessNonRefundableCredits" />
+          <Dependency module="schedule2" path="/totalOtherTaxes" />
+        </Add>
       </Derived>
     </Fact>
 
@@ -1440,7 +1441,15 @@
       <Name>Other Form withholding</Name>
       <Description>Federal income tax withheld from wages, as reported on line 25c of Form 1040.</Description>
       <Derived>
-        <Dollar>0</Dollar>
+        <Add>
+          <Dependency module="additionalMedicareTax" path="/additionalMedicareTaxWithheld" />
+          <!-- TODO: Include other sources of withholding that would fall on line 25c, eventually.
+          Not currently supported:
+          - Withholdings on form W-2G
+          - Income tax on schedule K-1
+          - Withholdings from 1042-S, Form 8805, or Form 8288-A
+        -->
+        </Add>
       </Derived>
     </Fact>
 
@@ -1454,6 +1463,7 @@
           <Add>
             <Dependency module="formW2s" path="/formW2Withholding" />
             <Dependency path="/form1099Withholding" />
+            <Dependency path="/otherFormWithholding" />
           </Add>
         </Round>
       </Derived>

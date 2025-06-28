@@ -80,6 +80,42 @@
       </Derived>
     </Fact>
 
+    <Fact path="/mustFileForm8959">
+      <Name>Form 8959 must be included on the return</Name>
+      <Description>The filer is required to include Form 8959 on their return.
+        Per Form 8959 instructions, this happens
+        when:
+
+        - Your Medicare wages and tips on any single Form W-2 (box 5) are greater than $200,000
+        - Your RRTA
+        compensation on any singleForm W-2 (box 14) is greater than $200,000
+        - Your total Medicare wages and tips plus
+        your self-employment income, if any (including the Medicare wages and tips and self-employment income of your
+        spouse, if married filing jointly), are greater than the threshold amount for your filing status
+        - Your total
+        RRTA compensation and tips (Form W-2, box 14) (including the RRTA compensation and tips of your spouse, if
+        married filing jointly) is greater than the threshold amount for your filing status
+      </Description>
+      <Export downstreamFacts="true" />
+
+      <Derived>
+        <Any>
+          <Dependency path="/anyW2ExceedsMaxIndividualWages" />
+          <!-- TODO check condition 2 when RRTA compensation is supported for RRTA compensation on a single W-2 -->
+          <GreaterThan>
+            <Left>
+              <Dependency path="/wagesSubjectToAdditionalMedicareTax" />
+            </Left>
+            <Right>
+              <Dollar>0</Dollar>
+            </Right>
+          </GreaterThan>
+          <!-- TODO check condition 3 when self-employment income is supported -->
+          <!-- TODO check condition 4 (total RRTA compensation) when RRTA compensation is supported -->
+        </Any>
+      </Derived>
+    </Fact>
+
     <Fact path="/additionalMedicareTaxRate">
       <Name>Rate of the additional medicare tax on wages</Name>
       <Description>The rate of Additional Medicare Tax with respect to wages received.
@@ -244,6 +280,178 @@
             <Dependency path="/wagesSubjectToAdditionalMedicareTax" />
           </Multiply>
         </Round>
+      </Derived>
+    </Fact>
+
+    <Fact path="/additionalMedicareTaxOnSelfEmploymentIncome">
+      <Description>Calculated amount of Additional Medicare Tax due to self-employment income.
+        Reported on Form 8959 line
+        13.
+        Will need to be updated when/if self-employment income is in scope.
+        Not currently supported. Assumes a
+        question identifies if this applies, and prevents
+        taxpayers who have this income from proceeding.
+      </Description>
+      <TaxYear>2024</TaxYear>
+      <Derived>
+        <Round>
+          <Dollar>0</Dollar>
+        </Round>
+      </Derived>
+    </Fact>
+
+    <Fact path="/additionalMedicareTaxOnRRTACompensation">
+      <Description>Calculated amount of Additional Medicare Tax due to Railroad Retirement Tax Act (RRTA) compensation.
+        Reported on Form 8959 line 17.
+        Assumes a question prevents taxpayers from proceeding inf they received income as
+        an employee representive subject
+        to the RRTA. These filers would have been expected to file form CT-2.
+        Aside from
+        what is reported on CT-2, we can ID
+        RRTA compensation by examining Box 14 for "RRTA compensation".
+        See W-2
+        instructions for more detail.
+        Will need to
+        be updated when/if RRTA income is in scope.
+        Not currently supported.
+      </Description>
+      <TaxYear>2024</TaxYear>
+      <Derived>
+        <Round>
+          <!-- TODO - if adding support for RRTA income, update this. -->
+          <Dollar>0</Dollar>
+        </Round>
+      </Derived>
+    </Fact>
+
+    <Fact path="/totalAdditionalMedicareTax">
+      <Description>Total additional medicare tax. Reported on Form 8959 line 18 and
+        Schedule 2 (Form 1040) line 11. And
+        1040-SS (not currently supported)
+      </Description>
+      <Export downstreamFacts="true" />
+      <ExportZero />
+      <Derived>
+        <Add>
+          <Dependency path="/additionalMedicareTaxOnWages" />
+          <Dependency path="/additionalMedicareTaxOnSelfEmploymentIncome" />
+          <Dependency path="/additionalMedicareTaxOnRRTACompensation" />
+        </Add>
+      </Derived>
+    </Fact>
+
+    <Fact path="/medicareTaxWithheldFromWages">
+      <Description>Withholdings from income considered withheld for the purposes of the medicare tax.
+        Reported on form
+        8959 line 19.
+
+        See form 8959 instructions for details.
+        Includes:
+        - Amounts on all W-2s in box 6.
+        - Any uncollected
+        Medicare tax on tips from Form W-2, box 12, code B
+        - Any uncollected Medicare tax on the taxable cost of
+        group-term life insurance over $50,000 (for former employees) from Form W-2, box 12, code N.
+
+        Don't include any
+        amounts reported on Form W-2, box 12, codes B and N, for uncollected RRTA Medicare tax.
+        Currently relies on both
+        box 12 codes B + N being knockouts.
+      </Description>
+      <Derived>
+        <Add>
+          <Dependency module="formW2s" path="/totalMedicareTaxesWithheld" />
+          <!-- TODO - In future, add support for W-2 Box 12, codes B + N but exclude W-2s for RRTA medicare tax.-->
+        </Add>
+      </Derived>
+    </Fact>
+
+    <Fact path="/medicareTaxWithholdingOnMedicareWages">
+      <Description>Tax withheld on wages applied to the regular Medicare Tax.
+        Reported on Form 8959 line 21.
+      </Description>
+      <Derived>
+        <Round>
+          <Multiply>
+            <Dependency path="/regularMedicareTaxWithholdingRate" />
+            <Dependency module="formW2s" path="/formW2totalMedicareWages" />
+          </Multiply>
+        </Round>
+      </Derived>
+    </Fact>
+
+    <Fact path="/additionalMedicareTaxWithheldOnWages">
+      <Description>Tax withheld on wages applied to the Additional Medicare Tax.
+        Reported on Form 8959 line 22.
+      </Description>
+      <ExportZero />
+      <Derived>
+        <Switch>
+          <Case>
+            <When>
+              <GreaterThan>
+                <Left>
+                  <Dependency path="/medicareTaxWithheldFromWages" />
+                </Left>
+                <Right>
+                  <Dependency path="/medicareTaxWithholdingOnMedicareWages" />
+                </Right>
+              </GreaterThan>
+            </When>
+            <Then>
+              <Subtract>
+                <Minuend>
+                  <Dependency path="/medicareTaxWithheldFromWages" />
+                </Minuend>
+                <Subtrahends>
+                  <Dependency path="/medicareTaxWithholdingOnMedicareWages" />
+                </Subtrahends>
+              </Subtract>
+            </Then>
+          </Case>
+          <Case>
+            <When>
+              <True />
+            </When>
+            <Then>
+              <Dollar>0</Dollar>
+            </Then>
+          </Case>
+        </Switch>
+      </Derived>
+    </Fact>
+
+    <Fact path="/additionalMedicareTaxWithheldOnRRTACompensation">
+      <Description>
+        Reported on Form 8959 line 23. See instructions for details.
+
+        Currently not supported. Relies on fact
+        /flowKnockoutHasRRTACodesInBox14 being used
+        to ensure that taxpayers who have any income on W-2s in box 14 with
+        RRTA taxes being excluded.
+        Also relies on the question verifying that all income is one of the supported types
+        preventing
+        users who have income reported on form CT-2 from continuing.
+      </Description>
+      <Derived>
+        <Dollar>0</Dollar>
+      </Derived>
+    </Fact>
+
+    <Fact path="/additionalMedicareTaxWithheld">
+      <Description>
+        Total amount of withholdings for the additional medicare tax.
+
+        Reported on Form 8959 line 24 and Form
+        1040 line 25c.
+      </Description>
+      <Export downstreamFacts="true" />
+      <Derived>
+        <Add>
+          <Dependency path="/additionalMedicareTaxWithheldOnWages" />
+          <Dependency path="/additionalMedicareTaxWithheldOnRRTACompensation" />
+          <!-- TODO - In future, add support for W-2 Box 12, codes B + N but exclude W-2s for RRTA medicare tax.-->
+        </Add>
       </Derived>
     </Fact>
 
