@@ -96,5 +96,40 @@
       </Derived>
     </Fact>
 
+    <Fact path="/hasOtherTaxes">
+      <Description>True if any of the other taxes reported on Line 21 of schedule 2 apply.
+        Not used to calculate taxes,
+        but is used to determine what to display to the
+        user in the frontend.
+      </Description>
+      <Derived>
+        <Switch>
+          <Case>
+            <When>
+              <GreaterThan>
+                <Left>
+                  <Dependency path="/totalOtherTaxes" />
+                </Left>
+                <Right>
+                  <Dollar>0</Dollar>
+                </Right>
+              </GreaterThan>
+            </When>
+            <Then>
+              <True />
+            </Then>
+          </Case>
+          <Case>
+            <When>
+              <True />
+            </When>
+            <Then>
+              <False />
+            </Then>
+          </Case>
+        </Switch>
+      </Derived>
+    </Fact>
+
   </Facts>
 </FactDictionaryModule>
