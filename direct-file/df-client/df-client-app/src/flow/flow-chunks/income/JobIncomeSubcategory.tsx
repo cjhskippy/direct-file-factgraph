@@ -763,7 +763,7 @@ export const JobIncomeSubcategory = (
           <SaveAndOrContinueButton />
         </Screen>
         <Gate condition='/formW2s/*/hasBox14Codes'>
-          <Screen route='w2-add-box-14' condition={{ operator: `isFalse`, condition: `/flowStateToolNeedsBox14` }}>
+          <Screen route='w2-add-box-14'>
             <ContextHeading
               displayOnlyOn='edit'
               i18nKey='/heading/income/jobs/w2-data-import-review'
@@ -776,7 +776,7 @@ export const JobIncomeSubcategory = (
             <Boolean path='/formW2s/*/hasRRTACodes' />
             <SaveAndOrContinueButton />
           </Screen>
-          <Screen route='rrta-codes-ko' condition='/flowKnockoutHasRRTACodesInBox14NotInNY' isKnockout={true}>
+          <Screen route='rrta-codes-ko' condition='/flowKnockoutHasRRTACodesInBox14' isKnockout={true}>
             <IconDisplay name='ErrorOutline' size={9} isCentered />
             <Heading i18nKey='/heading/knockout/forms-missing/w2-box-14-with-rrta-codes-not-in-ny-ko' />
             <DFAlert i18nKey='/info/knockout/generic-other-ways-to-file' headingLevel='h2' type='warning' />
