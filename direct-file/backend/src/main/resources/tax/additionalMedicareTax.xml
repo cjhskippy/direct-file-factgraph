@@ -80,6 +80,79 @@
       </Derived>
     </Fact>
 
+    <Fact path="/additionalMedicareTaxRate">
+      <Name>Rate of the additional medicare tax on wages</Name>
+      <Description>The rate of Additional Medicare Tax with respect to wages received.
+        Defined in 26 CFR § 31.3101-2
+      </Description>
+      <Derived>
+        <Rational>9/1000</Rational>
+      </Derived>
+    </Fact>
+
+    <Fact path="/regularMedicareTaxWithholdingRate">
+      <Name>Rate of the regular medicare tax on wages</Name>
+      <Description>The rate of Medicare Tax (a.k.a Hospital Insurance) with respect to wages received
+        Defined in 26 CFR §
+        31.3101-2
+      </Description>
+      <Derived>
+        <Rational>145/10000</Rational>
+      </Derived>
+    </Fact>
+
+    <Fact path="/unreportedTipsSubjectToMedicareTax">
+      <Description>Unreported tips subject to Medicare tax. Found on form 4137 line 6.
+        Currently not supported. Assumes
+        that a question verifies this form of
+        income does not apply to the taxpayer.
+        Will need to be updated when/if
+        unreported tips are in scope.
+        May also be affected by pending legislation on whether tips are taxable.
+      </Description>
+      <TaxYear>2024</TaxYear>
+      <Derived>
+        <Dollar>0</Dollar>
+      </Derived>
+    </Fact>
+
+    <Fact path="/wagesWithNoSSOrMedicareTaxWithholdings">
+      <Description>Wages received where social security and medicare tax were neither withheld nor
+        reported on form W-2.
+        Found on Form 8919 line 6.
+        Only applicable if all of the following are true:
+        - You performed services for a firm.
+        - You believe your pay from the firm wasn’t for services as an independent contractor.
+        - The firm didn’t withhold
+        your share of social security and Medicare taxes from your pay.
+        - One of the reasons in form 8919 under Reason
+        codes applies to you.
+
+        Currently not supported. Assumes that a question verifies this form of
+        income does not apply
+        to the taxpayer.
+      </Description>
+      <TaxYear>2024</TaxYear>
+      <Derived>
+        <Dollar>0</Dollar>
+      </Derived>
+    </Fact>
+
+    <Fact path="/totalWagesSubjectToAdditionalMedicareTax">
+      <Description>Total wages subject to the additional medicare tax.
+        Found on Form 8959 line 4.
+      </Description>
+      <Derived>
+        <Round>
+          <Add>
+            <Dependency module="formW2s" path="/formW2totalMedicareWages" />
+            <Dependency path="/unreportedTipsSubjectToMedicareTax" />
+            <Dependency path="/wagesWithNoSSOrMedicareTaxWithholdings" />
+          </Add>
+        </Round>
+      </Derived>
+    </Fact>
+
     <Fact path="/medicareWagesAdditionalTaxThreshhold">
       <Name>Medicare Wages Additonal Tax Threshhold</Name>
       <Description>The filing-status based threshold at which a filer might need to pay aditional
@@ -113,6 +186,64 @@
             </Then>
           </Case>
         </Switch>
+      </Derived>
+    </Fact>
+
+    <Fact path="/wagesSubjectToAdditionalMedicareTax">
+      <Name>Wages subject to the additional medicare tax</Name>
+      <Description>The amount of wages above the threshold for applying the additional medicare tax.
+        Reported on Form
+        8959 line 6 when required.</Description>
+      <ExportZero />
+      <Derived>
+        <Switch>
+          <Case>
+            <When>
+              <GreaterThan>
+                <Left>
+                  <Dependency path="/totalWagesSubjectToAdditionalMedicareTax" />
+                </Left>
+                <Right>
+                  <Dependency path="/medicareWagesAdditionalTaxThreshhold" />
+                </Right>
+              </GreaterThan>
+            </When>
+            <Then>
+              <Subtract>
+                <Minuend>
+                  <Dependency path="/totalWagesSubjectToAdditionalMedicareTax" />
+                </Minuend>
+                <Subtrahends>
+                  <Dependency path="/medicareWagesAdditionalTaxThreshhold" />
+                </Subtrahends>
+              </Subtract>
+            </Then>
+          </Case>
+          <Case>
+            <When>
+              <True />
+            </When>
+            <Then>
+              <Dollar>0</Dollar>
+            </Then>
+          </Case>
+        </Switch>
+      </Derived>
+    </Fact>
+
+    <Fact path="/additionalMedicareTaxOnWages">
+      <Name>Additional Medicare Tax on Wages</Name>
+      <Description>The amount of the additional Medicare Tax on a taxpayer's wages.
+        Reported on Form 8959 line 7.
+      </Description>
+      <ExportZero />
+      <Derived>
+        <Round>
+          <Multiply>
+            <Dependency path="/additionalMedicareTaxRate" />
+            <Dependency path="/wagesSubjectToAdditionalMedicareTax" />
+          </Multiply>
+        </Round>
       </Derived>
     </Fact>
 
