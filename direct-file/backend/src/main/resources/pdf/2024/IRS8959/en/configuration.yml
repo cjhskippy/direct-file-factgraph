@@ -1,0 +1,30 @@
+includeWhen: /mustFileForm8959
+form:
+  topmostSubform[0]:
+    Page1[0]:
+      f1_1[0]: /primaryFiler/fullName space space /pdfSecondaryFiler/fullName #TODO - add a fact that does this correctly for MFJ filers who share a last name.
+      f1_2[0]: /primaryFiler/tin
+      f1_3[0]: /formW2totalMedicareWages
+      f1_4[0]: /unreportedTipsSubjectToMedicareTax
+      f1_5[0]: /wagesWithNoSSOrMedicareTaxWithholdings
+      f1_6[0]: /totalWagesSubjectToAdditionalMedicareTax
+      f1_7[0]: /medicareWagesAdditionalTaxThreshhold
+      f1_8[0]: /wagesSubjectToAdditionalMedicareTax
+      f1_9[0]: /additionalMedicareTaxOnWages
+      #f1_10[0]:
+      #f1_11[0]:
+      #f1_12[0]:
+      #f1_13[0]:
+      #f1_14[0]:
+      f1_15[0]: /additionalMedicareTaxOnSelfEmploymentIncome
+      #f1_16[0]:
+      #f1_17[0]:
+      #f1_18[0]:
+      f1_19[0]: /additionalMedicareTaxOnRRTACompensation
+      f1_20[0]: /totalAdditionalMedicareTax
+      f1_21[0]: /medicareTaxWithheldFromWages
+      f1_22[0]: /formW2totalMedicareWages
+      f1_23[0]: /medicareTaxWithholdingOnMedicareWages
+      f1_24[0]: /additionalMedicareTaxWithheldOnWages
+      f1_25[0]: /additionalMedicareTaxWithheldOnRRTACompensation
+      f1_26[0]: /additionalMedicareTaxWithheld

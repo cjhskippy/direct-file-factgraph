@@ -304,6 +304,14 @@ direct-file:
         configuration-location: pdf/2024/IRS8889/en/configuration.yml
         configuration-location-type: classpath
         cache-in-memory: true
+      - name: IRS8959
+        year: 2024
+        language-code: en
+        location: pdf/2024/IRS8959/en/f8959.pdf
+        location-type: classpath
+        configuration-location: pdf/2024/IRS8959/en/configuration.yml
+        configuration-location-type: classpath
+        cache-in-memory: true
       - name: IRS8962
         year: 2024
         language-code: en

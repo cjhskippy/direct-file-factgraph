@@ -36,13 +36,13 @@ form:
       # f1_18[0]:
       # f1_19[0]:
       # f1_20[0]:
-      # f1_21[0]:
+      f1_21[0]: /totalAdditionalMedicareTax
       # f1_22[0]:
       # f1_23[0]:
       # f1_24[0]:
       # f1_25[0]:
       # f1_26[0]:
-    # Page2[0]:
+    Page2[0]:
       # Line17a_ReadOrder[0]:
         # Line17_ReadOrder[0]:
           # f2_01[0]:
@@ -71,4 +71,4 @@ form:
       # f2_23[0]:
       # Line20_ReadOrder[0]:
         # f2_24[0]:
-      # f2_25[0]:
+      f2_25[0]: /totalOtherTaxes
